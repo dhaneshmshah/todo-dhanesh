@@ -9,6 +9,7 @@
   --high: #d32f2f;
   --medium: #ed8b00;
   --low: #2e7d32;
+  --heading: #ec4899;
   --accent: #1a73e8;
   --work: #1976d2;
   --personal: #d946ef;
@@ -30,6 +31,7 @@
   --high: #ef5350;
   --medium: #ffa726;
   --low: #66bb6a;
+  --heading: #f48fb1;
   --accent: #6ea8fe;
   --work: #64b5f6;
   --personal: #f48fb1;
@@ -69,7 +71,7 @@ header {
 }
 
 h1 {
-  color: var(--high);
+  color: var(--heading);
   margin-top: 0;
 }
 
