@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>To Do</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>To Do</h1>
+      <button id="theme" type="button" aria-label="Toggle dark mode"></button>
+    </header>
+
+    <form id="form">
+      <input id="input" type="text" placeholder="Add a task..." aria-label="New task" autocomplete="off">
+      <select id="category" aria-label="Category">
+        <option value="">Category</option>
+        <option value="work">Work</option>
+        <option value="personal">Personal</option>
+        <option value="shopping">Shopping</option>
+        <option value="health">Health</option>
+      </select>
+      <select id="priority" aria-label="Priority">
+        <option value="high">High</option>
+        <option value="medium" selected>Medium</option>
+        <option value="low">Low</option>
+      </select>
+      <input id="due" type="date" aria-label="Due date (optional)">
+      <button type="submit">Add</button>
+    </form>
+
+    <div class="toolbar">
+      <input id="search" type="search" placeholder="Search tasks..." aria-label="Search tasks" autocomplete="off">
+      <select id="categoryFilter" aria-label="Filter by category">
+        <option value="all">All categories</option>
+        <option value="work">Work</option>
+        <option value="personal">Personal</option>
+        <option value="shopping">Shopping</option>
+        <option value="health">Health</option>
+      </select>
+      <select id="priorityFilter" aria-label="Filter by priority">
+        <option value="all">All priorities</option>
+        <option value="high">High</option>
+        <option value="medium">Medium</option>
+        <option value="low">Low</option>
+      </select>
+    </div>
+
+    <div class="tabs" id="tabs" role="group" aria-label="Filter tasks">
+      <button type="button" data-filter="all" aria-pressed="true">All</button>
+      <button type="button" data-filter="active" aria-pressed="false">Active</button>
+      <button type="button" data-filter="done" aria-pressed="false">Done</button>
+    </div>
+
+    <ul id="list"></ul>
+    <p id="empty" hidden></p>
+
+    <footer>
+      <p id="count" aria-live="polite"></p>
+      <div class="actions">
+        <button id="clear" type="button">Clear completed</button>
+        <button id="export" type="button">Export</button>
+        <button id="import" type="button">Import</button>
+        <input id="file" type="file" accept="application/json,.json" hidden>
+      </div>
+    </footer>
+  </main>
+
+  <div id="toast" role="status" aria-live="polite" hidden>
+    <span id="toastMsg"></span>
+    <button id="undo" type="button">Undo</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
